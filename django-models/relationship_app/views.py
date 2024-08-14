@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm  # Ensure this is here
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.shortcuts import render, redirect
@@ -37,7 +37,7 @@ class UserLogoutView(LogoutView):
 
 class UserRegisterView(FormView):
     template_name = 'relationship_app/register.html'
-    form_class = UserCreationForm
+    form_class = UserCreationForm  # Ensure this is here
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
