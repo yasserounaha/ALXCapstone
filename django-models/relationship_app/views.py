@@ -37,14 +37,22 @@ class UserLogoutView(LogoutView):
 
 class UserRegisterView(FormView):
     template_name = 'relationship_app/register.html'
-    form_class = UserCreationForm  # Ensure this is here
+    form_class = UserCreationForm
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)  # Log the user in after successful registration
-        messages.success(self.request, 'Registration successful.')
+        form.save()
         return super().form_valid(form)
+    def register(request):
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after successful registration
+            messages.success(request, 'Registration successful.')
+            return redirect('home')  # Redirect to a specific page, e.g., home
+        else:
+            form = UserCreationForm()
 
 def list_books(request):
     books = Book.objects.all()
