@@ -23,7 +23,19 @@ class UserRegisterView(FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+    def register(request):
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after successful registration
+            messages.success(request, 'Registration successful.')
+            return redirect('home')  # Redirect to a specific page, e.g., home
+        else:
+            form = UserCreationForm()
     
+    return render(request, 'relationship_app/register.html', {'form': form})
+
 def list_books(request):
     books = Book.objects.all()
     return render(request, 'relationship_app/list_books.html', {'books': books})
