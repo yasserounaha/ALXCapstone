@@ -1,6 +1,8 @@
+from .views import list_books, LibraryDetailView
 from django.urls import path , include
 from .views import UserLoginView, UserLogoutView, UserRegisterView,list_books, LibraryDetailView , home
 from . import views
+from .views import list_books
 urlpatterns = [
       path('add_book/', views.AddBookView.as_view(), name='add_book'),
     path('edit_book/<int:pk>/', views.EditBookView.as_view(), name='edit_book'),
