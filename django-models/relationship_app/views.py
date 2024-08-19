@@ -12,6 +12,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from .forms import BookForm
 from .models import Library
+from django.views.generic.detail import DetailView
+
 
 
 @permission_required('relationship_app.can_add_book')
