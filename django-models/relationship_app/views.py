@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from .forms import BookForm
+from .models import Library
+
 
 @permission_required('relationship_app.can_add_book')
 def add_book(request):
