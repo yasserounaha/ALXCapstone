@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
-from .models import Book
+from .models import CustomUser, Library, Book
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'publication_year')
@@ -9,6 +8,7 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('title', 'author')
 
 admin.site.register(Book, BookAdmin)
+
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['email', 'username', 'date_of_birth', 'is_staff', 'is_active']
@@ -27,4 +27,6 @@ class CustomUserAdmin(UserAdmin):
     )
     search_fields = ('email', 'username')
     ordering = ('email',)
-    admin.site.register(CustomUser, CustomUserAdmin)
+
+admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Library)
