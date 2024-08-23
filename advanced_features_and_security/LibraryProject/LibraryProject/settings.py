@@ -35,6 +35,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents browsers from MIME-type sniffing
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 ALLOWED_HOSTS = []
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
