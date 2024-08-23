@@ -22,7 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-fz$n9^8udqu&3cip1!pt$0lp&^!@0gm(cs_5o+1p5s$7rcdd2d'
-
+SECURE_SSL_REDIRECT = True
+# Set HTTP Strict Transport Security (HSTS) header
+SECURE_HSTS_SECONDS = 31536000  # Enforces HTTPS for one year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allows the site to be preloaded by browsers
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 SECURE_BROWSER_XSS_FILTER = True
