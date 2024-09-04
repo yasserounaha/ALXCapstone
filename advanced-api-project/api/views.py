@@ -2,7 +2,7 @@
 from rest_framework import generics
 from .models import Book
 from .seriealizers import BookSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters import rest_framework as filters
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.generics import ListAPIView , RetrieveAPIView , CreateAPIView , UpdateAPIView , DestroyAPIView
