@@ -51,3 +51,9 @@ The views were manually tested using tools like Postman and curl to verify that 
 Each view has been documented in the code with comments explaining its purpose and configuration. Additionally, this README provides an overview of the project structure, the functionality of each view, and the security measures implemented.
 
 This project demonstrates how to effectively use Django REST Framework to build a robust and secure API, with clear examples of how to implement and customize generic views.
+### Filtering
+Users can filter the list of books by title, author, or publication year using query parameters.
+### Searching
+The API supports full-text search on the `title` and `author` fields.
+### Ordering
+Users can order the results by any field, such as `title` or `publication_year`.

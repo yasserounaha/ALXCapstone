@@ -9,7 +9,8 @@ from rest_framework.generics import ListAPIView , RetrieveAPIView , CreateAPIVie
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter , OrderingFilter
 class BookFilter(filters.FilterSet):
     # Define custom filters here
     title = filters.CharFilter(lookup_expr='icontains')
@@ -23,6 +24,10 @@ class ListView(ListAPIView):
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['title', 'author', 'publication_year']
+    search_fields = ['title', 'author']
+    ordering_fields = ['title', 'publication_year']
     permission_classes = [AllowAny]  # Allow unauthenticated users to list books
 #def perform_create(self, serializer):
         # Custom logic before saving the book instance
