@@ -57,3 +57,14 @@ Users can filter the list of books by title, author, or publication year using q
 The API supports full-text search on the `title` and `author` fields.
 ### Ordering
 Users can order the results by any field, such as `title` or `publication_year`.
+### API Testing
+To run the tests for the API, use:
+
+bash
+Copier le code
+python manage.py test api
+The test suite covers:
+
+CRUD operations (create, update, delete books)
+Filtering, searching, and ordering functionalities
+Permissions and authentication checks
