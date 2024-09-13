@@ -25,3 +25,7 @@ Permissions: Only authenticated users can create posts; only authors can edit/de
 Usage
 Navigate to /posts/ to view all posts.
 Logged-in users can create, edit, and delete their own posts.
+### Commentaire
+The comment system allows users to interact with blog posts by adding, editing, and deleting comments. Authenticated users can post comments on a blog post, and only the comment author can edit or delete their own comments. The views are integrated directly on the blog post detail page for a seamless user experience.
+
+Permissions ensure that only authorized actions are performed, and intuitive URLs make navigating through comment operations straightforward.
