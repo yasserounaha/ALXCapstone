@@ -29,3 +29,25 @@ Logged-in users can create, edit, and delete their own posts.
 The comment system allows users to interact with blog posts by adding, editing, and deleting comments. Authenticated users can post comments on a blog post, and only the comment author can edit or delete their own comments. The views are integrated directly on the blog post detail page for a seamless user experience.
 
 Permissions ensure that only authorized actions are performed, and intuitive URLs make navigating through comment operations straightforward.
+### Tagging and Search Features
+Adding Tags to Posts
+Create/Edit a Post:
+
+When creating or editing a post, you'll find a section for tags.
+Use the checkbox options to select existing tags or create new ones.
+Save the Post:
+
+After selecting or creating tags, save the post to apply the tags.
+Searching for Posts
+Using the Search Bar:
+
+On the blog's main page or search page, enter keywords into the search bar.
+You can search by post title, content, or tags.
+Viewing Search Results:
+
+Results matching your query will be displayed.
+Click on a post title to view the full content.
+Viewing Posts by Tag
+Tag Links:
+On each post, tags are displayed as clickable links.
+Click on a tag to see all posts associated with that tag.

@@ -9,7 +9,8 @@ from .models import Post
 from django.shortcuts import get_object_or_404, redirect
 from .models import Comment
 from .forms import CommentForm
-
+from taggit.managers import TaggableManager
+from django.db.models import Q
 def home(request):
     return render(request, 'blog/base.html')
 
@@ -148,3 +149,15 @@ def delete_comment(request, comment_id):
     post_id = comment.post.id
     comment.delete()
     return redirect('post-detail', pk=post_id)    
+def search(request):
+    query = request.GET.get('q', '')
+    posts = Post.objects.filter(
+        Q(title__icontains=query) | 
+        Q(content__icontains=query) |
+        Q(tags__name__icontains=query)
+    ).distinct()
+    return render(request, 'search_results.html', {'posts': posts, 'query': query})
+def posts_by_tag(request, tag_name):
+    tag = Tag.objects.get(name=tag_name)
+    posts = tag.posts.all()
+    return render(request, 'posts_by_tag.html', {'posts': posts, 'tag_name': tag_name})
