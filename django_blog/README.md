@@ -13,3 +13,15 @@ Login: Go to /login, enter valid credentials, and check if the user is logged in
 Logout: Visit /logout and confirm the user is logged out and redirected to the homepage.
 Registration: Test registration by visiting /register, filling the form, and verifying the redirect to login.
 Profile Update: Go to /profile, change details, submit the form, and check if the changes are saved.
+### Django Blog Project - CRUD Features
+This Django blog allows users to create, read, update, and delete (CRUD) blog posts.
+
+Features
+Create Posts: Authenticated users can create new posts.
+Read Posts: All users can view blog posts.
+Update Posts: Post authors can edit their own posts.
+Delete Posts: Post authors can delete their own posts.
+Permissions: Only authenticated users can create posts; only authors can edit/delete their posts.
+Usage
+Navigate to /posts/ to view all posts.
+Logged-in users can create, edit, and delete their own posts.
