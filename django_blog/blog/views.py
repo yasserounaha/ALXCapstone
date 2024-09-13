@@ -72,6 +72,49 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+# View for creating a comment
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'blog/add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # Set the current user as the author
+        form.instance.post = get_object_or_404(Post, id=self.kwargs['pk'])  # Link the comment to the post
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.kwargs['pk']})
+
+# View for updating a comment
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'blog/edit_comment.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # Set the current user as the author
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.object.post.pk})
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author  # Only allow the author to update the comment
+
+# View for deleting a comment
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'blog/comment_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.object.post.pk})
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author  # Only allow the author to delete the comment
+        
 @login_required
 def add_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
