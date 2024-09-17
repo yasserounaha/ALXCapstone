@@ -3,7 +3,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)  # Using serializers.CharField
+    # Use serializers.CharField for the password field and set it to write-only
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = get_user_model()
@@ -19,6 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
             profile_picture=validated_data.get('profile_picture')
         )
         # Create a token for the newly created user
-        Token.objects.create(user=user)  # Token.objects.create
+        Token.objects.create(user=user)
 
         return user
