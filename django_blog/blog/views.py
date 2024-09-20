@@ -11,6 +11,8 @@ from .models import Comment
 from .forms import CommentForm
 from taggit.managers import TaggableManager
 from django.db.models import Q
+from taggit.forms import TagWidget
+
 def home(request):
     return render(request, 'blog/base.html')
 
