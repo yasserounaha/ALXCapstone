@@ -98,8 +98,8 @@ class LikePostView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
-        # Ensure the post exists
-        post = get_object_or_404(Post, pk=pk)
+        # Ensure the post exists using generics.get_object_or_404
+        post = generics.get_object_or_404(Post, pk=pk)
 
         # Like the post or return a response if already liked
         like, created = Like.objects.get_or_create(user=request.user, post=post)
@@ -126,8 +126,8 @@ class UnlikePostView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
-        # Ensure the post exists
-        post = get_object_or_404(Post, pk=pk)
+        # Ensure the post exists using generics.get_object_or_404
+        post = generics.get_object_or_404(Post, pk=pk)
 
         # Try to retrieve the like object and delete it
         try:
