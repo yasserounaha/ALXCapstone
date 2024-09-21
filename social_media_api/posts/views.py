@@ -39,18 +39,18 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class FeedView(generics.ListAPIView):
     """
-    A view to display posts from followed users, ordered by creation date.
+    Create a view in the posts app that generates a feed based on the posts from users 
+    that the current user follows. This view should return posts ordered by creation date, 
+    showing the most recent posts at the top.
     """
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         # Get the users the current user is following
-        followed_users = self.request.user.following.all()
-        # Optionally, filter posts to only include those from the last 7 days
-        time_threshold = timezone.now() - timedelta(days=7)
-        # Return posts from the followed users, ordered by creation date
-        return Post.objects.filter(author__in=followed_users, published_date__gte=time_threshold).order_by('-published_date')
+        following_users = self.request.user.following.all()
+        # Return posts from followed users, ordered by creation date (most recent at the top)
+        return Post.objects.filter(author__in=following_users).order_by('-published_date')
 
 
 class FollowUserView(GenericAPIView):
