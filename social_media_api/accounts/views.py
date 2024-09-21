@@ -46,7 +46,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, post_id=self.kwargs['post_pk'])
 User = get_user_model()
 
-class FollowUserView(GenericAPIView):
+class FollowUserView(generics.GenericAPIView):  # Using generics.GenericAPIView
     """
     A view to allow the current user to follow another user.
     """
@@ -61,11 +61,12 @@ class FollowUserView(GenericAPIView):
         if user_to_follow == request.user:
             return Response({"error": "You cannot follow yourself."}, status=400)
 
+        # Add the user to the following list
         request.user.following.add(user_to_follow)
         return Response({"message": f"You are now following {user_to_follow.username}."}, status=200)
 
 
-class UnfollowUserView(GenericAPIView):
+class UnfollowUserView(generics.GenericAPIView):  # Using generics.GenericAPIView
     """
     A view to allow the current user to unfollow another user.
     """
@@ -80,5 +81,6 @@ class UnfollowUserView(GenericAPIView):
         if user_to_unfollow == request.user:
             return Response({"error": "You cannot unfollow yourself."}, status=400)
 
+        # Remove the user from the following list
         request.user.following.remove(user_to_unfollow)
         return Response({"message": f"You have unfollowed {user_to_unfollow.username}."}, status=200)
