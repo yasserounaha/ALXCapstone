@@ -23,12 +23,12 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@!@+h=vry^njlk++k^b1lb@!sja(p$+f=ov=6v9i_2a9y%knb@'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 AUTH_USER_MODEL = 'users.User'
 
